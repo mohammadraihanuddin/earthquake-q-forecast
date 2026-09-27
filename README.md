@@ -16,6 +16,8 @@
 
 </div>
 
+**[▶ Open the interactive risk map](https://mohammadraihanuddin.github.io/earthquake-q-forecast/)** · **[Presentation slides](docs/presentation.pptx)** · **[Full results](results/README.md)**
+
 ## What this project does
 
 After a damaging earthquake, rescue crews need to know whether it is safe to enter the damage zone in the next
@@ -155,6 +157,7 @@ Every recorded result was rerun from the raw catalogs and checked by 19 automate
 ```
 earthquake-q-forecast/
 ├── README.md
+├── LICENSE                     # MIT
 ├── requirements.txt
 ├── run_all.sh                  # one command: rebuild everything from raw data
 ├── data/                       # put the three challenge CSVs in data/raw/ (see data/README.md)
@@ -195,8 +198,29 @@ Ke et al. (2017) · Künsch (1989) · McClean et al. (2018) · Mignan & Woessner
 Schuld & Killoran (2019) · Thanasilp et al. (2024) · Utsu (1961) · Wiemer & Wyss (2000) · Zadrozny & Elkan (2002).
 Full citations are on the last slide of [the presentation](docs/presentation.pptx).
 
+## My role
+
+I ([Mohammad Raihan Uddin](https://github.com/mohammadraihanuddin)) wrote all of the code in this repository
+during the hackathon, for Team Schrödinger's Cats. That covers:
+
+- **Data engineering:** a read-only audit of 337k raw rows across five sources, and a leakage-safe training set
+  of 6.35 million cell × issue-date × lead-window examples.
+- **Modelling:** the feature set, the pooled gradient-boosted model, per-window isotonic calibration, and
+  comparisons against climatology, a location-only baseline, ETAS, per-window models and an MLP.
+- **Physics and drivers:** the ETAS maximum-likelihood fit, declustering diagnostics, and paired ablations of
+  geomagnetic, solar, tidal and GPS streams.
+- **Quantum:** the 4-qubit angle-encoded feature map, with exact simulation checked against Qiskit and a
+  paired block-bootstrap test.
+- **Verification:** a full rerun from raw data with 19 automated checks, which caught and fixed the
+  forecast row-alignment bug before submission.
+- **Communication:** the figures, the interactive risk map, the stakeholder threshold analysis and the slides.
+
 ## Acknowledgements
 
-Built by **Team Schrödinger's Cats** at **SC Quantathon V3** (Clemson University, 25–27 September 2026).
+Built for **Team Schrödinger's Cats** at **SC Quantathon V3** (Clemson University, 25–27 September 2026).
 Challenge by Larry M. Deschaine, PhD (SRNL & Clemson), sponsored by Savannah River National Laboratory.
 Earthquake data: USGS ComCat; driver streams: GFZ (geomagnetic, solar), ephemeris tides, Nevada Geodetic Laboratory (GPS).
+
+## License
+
+Code is released under the [MIT License](LICENSE). The challenge data is not included (see [data/README.md](data/README.md)).

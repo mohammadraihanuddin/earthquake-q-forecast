@@ -1,0 +1,195 @@
+
+========================================================================
+Environment
+========================================================================
+     timestamp: 2026-09-27 09:13:37 EDT
+        python: 3.12.14
+      platform: macOS-26.7-arm64-arm-64bit
+         numpy: 2.5.3
+        pandas: 3.0.6
+  scikit_learn: 1.9.1
+         scipy: 1.18.1
+          seed: 42
+
+========================================================================
+Raw data provenance (judge file hashed only, never parsed)
+========================================================================
+   earthquakeq_judge.csv  sha256 e556590f6d693bc967db3efefeaedd7257bf44a2058a5aab6dae2e5f70387e6e
+    earthquakeq_test.csv  sha256 f9843e6be720bea633ac98f9f6b1ba5421aa8653c21acb4304b7d955cacbee0d
+   earthquakeq_train.csv  sha256 078a0cab7c159b6fd9af7c9109cbca318ef2221f04f4edbd0edc385d0599988d
+Seismic events (train+test catalogs): 13,624  1990-01-02 .. 2024-12-31  M 1.00..5.90
+
+========================================================================
+Dataset: cell x origin x horizon examples
+========================================================================
+        fit: 2001-01..2018-12 (216 origins) rows=5,025,240 positives=293,242 rate=0.0584 (h0 0.0572 .. h14 0.0597)
+calibration: 2019-01..2020-12 (24 origins) rows=  558,360 positives= 42,686 rate=0.0764 (h0 0.0751 .. h14 0.0784)
+       test: 2021-01..2023-09 (33 origins) rows=  767,745 positives= 57,895 rate=0.0754 (h0 0.0744 .. h14 0.0750)
+                       lat: median 32.5  p99 48  zero-share 0.00
+                       lon: median -77.5  p99 -65.5  zero-share 0.00
+            count_7d_100km: median 0  p99 1  zero-share 0.98
+           count_30d_100km: median 0  p99 3  zero-share 0.93
+           count_90d_100km: median 0  p99 7  zero-share 0.87
+          count_365d_100km: median 0  p99 28  zero-share 0.74
+     log1p_days_since_last: median 6.71  p99 9  zero-share 0.00
+              ratio_7d_30d: median 0  p99 1  zero-share 0.98
+            ratio_30d_365d: median 0  p99 0.667  zero-share 0.93
+
+========================================================================
+Model: frozen pipeline
+========================================================================
+                  loss: log_loss
+         learning_rate: 0.06
+              max_iter: 120
+        max_leaf_nodes: 31
+      min_samples_leaf: 20
+             max_depth: None
+     l2_regularization: 1.0
+              max_bins: 255
+        early_stopping: auto
+   validation_fraction: 0.1
+      n_iter_no_change: 10
+                   tol: 1e-07
+               scoring: loss
+          random_state: 42
+       boosting_iterations_run: 120
+           max_iter_configured: 120
+         early_stopping_active: True
+                         trees: 120
+                  leaves_total: 3720
+                   nodes_total: 7320
+             split_nodes_total: 3600
+     learned_parameters_approx: 10920
+             max_depth_reached: 15
+          mean_leaves_per_tree: 31.0
+Training curve (log loss, nats): iter  train  early-stopping-validation
+       0  0.22241  0.22241
+      10  0.16462  0.16476
+      20  0.14979  0.14993
+      30  0.14302  0.14312
+      40  0.13959  0.13970
+      50  0.13769  0.13780
+      60  0.13650  0.13659
+      70  0.13582  0.13591
+      80  0.13533  0.13540
+      90  0.13480  0.13488
+     100  0.13446  0.13453
+     110  0.13416  0.13423
+     120  0.13386  0.13394
+     120  0.13386  0.13394
+
+========================================================================
+Calibration: one isotonic regression per horizon (calibration origins only)
+========================================================================
+  h 0: rows 37,224 positives 2,795 breakpoints 76
+  h 1: rows 37,224 positives 2,846 breakpoints 84
+  h 2: rows 37,224 positives 2,836 breakpoints 104
+  h 3: rows 37,224 positives 2,858 breakpoints 82
+  h 4: rows 37,224 positives 2,805 breakpoints 76
+  h 5: rows 37,224 positives 2,873 breakpoints 102
+  h 6: rows 37,224 positives 2,835 breakpoints 86
+  h 7: rows 37,224 positives 2,820 breakpoints 96
+  h 8: rows 37,224 positives 2,924 breakpoints 104
+  h 9: rows 37,224 positives 2,850 breakpoints 92
+  h10: rows 37,224 positives 2,777 breakpoints 104
+  h11: rows 37,224 positives 2,872 breakpoints 92
+  h12: rows 37,224 positives 2,842 breakpoints 97
+  h13: rows 37,224 positives 2,835 breakpoints 90
+  h14: rows 37,224 positives 2,918 breakpoints 82
+
+========================================================================
+Test results (2021-01..2023-09 origins; reference = fit-period base rate)
+========================================================================
+                     n: 767745
+             positives: 57895
+         positive_rate: 0.07540915277859185
+               ig_bits: 0.14582367854116265
+              log_loss: 0.1687691602520702
+                 brier: 0.04962805239809624
+                   auc: 0.9061222119528958
+                pr_auc: 0.5201064521965549
+                   ece: 0.007145506342183459
+  ig_bits_vs_test_rate: 0.14231034633047376
+Matches recorded headline IG 0.14582367854116265: True
+Per horizon: h  IG(bits)  AUC  ECE  positive-rate
+   0  0.1483  0.9112  0.0062  0.0744
+   1  0.1459  0.9093  0.0079  0.0740
+   2  0.1434  0.9099  0.0087  0.0727
+   3  0.1446  0.9071  0.0081  0.0750
+   4  0.1423  0.9069  0.0092  0.0743
+   5  0.1370  0.9026  0.0120  0.0740
+   6  0.1418  0.9051  0.0080  0.0746
+   7  0.1454  0.9039  0.0068  0.0761
+   8  0.1461  0.9037  0.0077  0.0758
+   9  0.1488  0.9064  0.0059  0.0767
+  10  0.1492  0.9054  0.0087  0.0779
+  11  0.1513  0.9075  0.0053  0.0775
+  12  0.1498  0.9078  0.0070  0.0772
+  13  0.1485  0.9077  0.0070  0.0758
+  14  0.1448  0.9059  0.0095  0.0750
+Identical to rerun comparison predictions: True
+
+========================================================================
+Permutation importance (test, 200k random rows, 3 repeats, log-loss increase)
+========================================================================
+                       lat: +0.1343 bits
+                       lon: +0.0218 bits
+            count_7d_100km: +-0.0000 bits
+           count_30d_100km: +-0.0003 bits
+           count_90d_100km: +-0.0012 bits
+          count_365d_100km: +0.0653 bits
+     log1p_days_since_last: +0.0573 bits
+              ratio_7d_30d: +-0.0000 bits
+            ratio_30d_365d: +0.0000 bits
+             horizon_index: +-0.0007 bits
+
+========================================================================
+Comparison models (from rerun artifacts)
+========================================================================
+  Frozen candidate (pooled HGB + horizon)    0.145824 bits
+  Pooled HGB, no horizon feature             0.144519 bits
+  15 per-horizon HGB (starter + accel)       0.143553 bits
+  15 per-horizon HGB (starter)               0.143376 bits
+  ETAS approximation                         0.145321 bits
+  Spatial prior (cell x horizon rate)        0.141048 bits
+  Climatology (fit base rate)                0.000000 bits
+External drivers (IG bits; paired 3-origin block 95% CI of difference vs seismic-only):
+  seismic_only     0.145824 
+  geomagnetic      0.144984 [-0.00220, +0.00061]
+  solar            0.141420 [-0.00527, -0.00354]
+  tidal_ephemeris  0.142995 [-0.00407, -0.00158]
+  gps              0.142910 [-0.00419, -0.00164]
+  all_external     0.143128 [-0.00423, -0.00112]
+Day-7 QML sample ablation IG: quantum -0.001418, classical control -0.001176 (24k-row sample)
+
+========================================================================
+2025 forecast (corrected row alignment, provisional contract)
+========================================================================
+  2025-01-01: mean 0.0812 median 0.0032 max 0.9999
+  2025-01-31: mean 0.0821 median 0.0036 max 0.9999
+  2025-03-02: mean 0.0819 median 0.0033 max 0.9999
+  2025-04-01: mean 0.0818 median 0.0044 max 0.9999
+  2025-05-01: mean 0.0811 median 0.0040 max 0.9999
+  2025-05-31: mean 0.0825 median 0.0053 max 0.9999
+  2025-06-30: mean 0.0812 median 0.0029 max 0.9999
+  2025-07-30: mean 0.0808 median 0.0056 max 0.9999
+  2025-08-29: mean 0.0834 median 0.0092 max 0.9999
+  2025-09-28: mean 0.0823 median 0.0095 max 0.9999
+  2025-10-28: mean 0.0799 median 0.0093 max 0.9818
+  2025-11-27: mean 0.0814 median 0.0098 max 0.9999
+  2025-12-27: mean 0.0816 median 0.0109 max 0.9999
+  2026-01-26: mean 0.0814 median 0.0104 max 0.9999
+  2026-02-25: mean 0.0833 median 0.0104 max 0.9999
+  Top-10 cells by mean 15-window probability:
+    provisional_0000 (36.0, -90.0)  0.9987
+    provisional_0149 (36.5, -89.0)  0.9987
+    provisional_0002 (36.5, -90.0)  0.9987
+    provisional_0004 (36.5, -89.5)  0.9987
+    provisional_0001 (36.0, -89.5)  0.9987
+    provisional_0253 (36.0, -89.0)  0.9987
+    provisional_0052 (37.0, -89.0)  0.9947
+    provisional_0046 (37.0, -89.5)  0.9947
+    provisional_0068 (37.0, -90.0)  0.9947
+    provisional_0543 (35.5, -89.0)  0.9523
+
+Done in 48.7 s -> /Users/raihan/QuantaThonv3/mohammad/submission_check/final_run

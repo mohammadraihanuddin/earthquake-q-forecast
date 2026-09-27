@@ -1,0 +1,89 @@
+{
+  "parameters": {
+    "mu_global_day": 0.6093095471682367,
+    "K": 1e-08,
+    "alpha": 0.49681890710406285,
+    "c_days": 1.1764995658423347,
+    "p": 1.2116606981074656
+  },
+  "success": true,
+  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "nit": 7,
+  "fun": 6322.672309202104,
+  "fit_events": 4228,
+  "cells": 644,
+  "background_scope": "mu_global multiplied by each cell's historical M>=Mc activity share; shared temporal ETAS parameters",
+  "cell_contract_assertion": "644 cells derived from all seismic events before 2022; magnitude filtering does not alter IDs",
+  "kernel": "unnormalized (s-t_j+c)^(-p), analytically integrated over each 30-day window",
+  "timestamp_unit": "integer Unix seconds from datetime64[s]; origin uses strict t_event < t0",
+  "magnitude_convention": "fit and background use M>=1.75; expected counts scaled to M>=2.0 with regional b=0.846 before Poisson conversion",
+  "target_scale": 0.6144690317057614,
+  "hard_radius_km": 100,
+  "mc": 1.75,
+  "target_magnitude": 2.0,
+  "horizon_days": 30,
+  "splits": {
+    "fit": "2001-01-01..2019-12-31",
+    "calibration": "2020-01..2021-12",
+    "test": "2022-01..2024-11"
+  },
+  "integral_checks": {
+    "finite_positive": true,
+    "full_tail": 2.884094991251256,
+    "finite_30d": 1.2239251655411818,
+    "zero_age_30d": 2.6737395611417987,
+    "numerical_30d": 1.2239251655956633,
+    "one_event_relative_error": 4.451377578639002e-11,
+    "future_guard": true,
+    "cutoff_guard": "past uses t < cutoff; labels use cutoff < t <= cutoff+30d"
+  },
+  "metrics": {
+    "calibration": {
+      "n": 15456,
+      "positives": 2707,
+      "base_rate": 0.17514233954451347,
+      "ig_bits": 0.15620607297972516,
+      "auc": 0.7991684550296694,
+      "pr_auc": 0.5323138439693339,
+      "brier": 0.10830259209793652
+    },
+    "test": {
+      "n": 22540,
+      "positives": 3855,
+      "base_rate": 0.17102928127772848,
+      "ig_bits": 0.14460233465959677,
+      "auc": 0.7857339876379057,
+      "pr_auc": 0.5161292767911861,
+      "brier": 0.10859526623522006
+    },
+    "test_raw": {
+      "n": 22540,
+      "positives": 3855,
+      "base_rate": 0.17102928127772848,
+      "ig_bits": 0.12226125855687042,
+      "auc": 0.7846351571743566,
+      "pr_auc": 0.5399433888827629,
+      "brier": 0.11148776131284895
+    }
+  },
+  "calibration_diagnostics": {
+    "raw_calibration_unique": 14956,
+    "calibrated_unique": 35,
+    "raw_test_quantiles": [
+      5.878680653381708e-11,
+      0.07414816594023327,
+      0.9566058692101926
+    ],
+    "calibrated_test_quantiles": [
+      0.011764705882352941,
+      0.13996316758747693,
+      0.9354838709677419
+    ]
+  },
+  "inputs": {
+    "earthquakeq_train.csv": "078a0cab7c159b6fd9af7c9109cbca318ef2221f04f4edbd0edc385d0599988d",
+    "earthquakeq_test.csv": "f9843e6be720bea633ac98f9f6b1ba5421aa8653c21acb4304b7d955cacbee0d"
+  },
+  "python": "3.12.14 (main, Sep 24 2026, 17:46:32) [Clang 22.1.3 ]",
+  "platform": "macOS-26.7-arm64-arm-64bit"
+}

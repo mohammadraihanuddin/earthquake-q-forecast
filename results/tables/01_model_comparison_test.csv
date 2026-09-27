@@ -1,0 +1,8 @@
+model,ig_bits_test
+Frozen candidate (pooled HGB + horizon),0.14582367854116265
+"Pooled HGB, no horizon feature",0.14451902492381302
+15 per-horizon HGB (starter + accel),0.14355320814741748
+15 per-horizon HGB (starter),0.14337630831542955
+ETAS approximation,0.14532126298669718
+Spatial prior (cell x horizon rate),0.14104811013503663
+Climatology (fit base rate),0.0

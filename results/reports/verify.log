@@ -1,0 +1,21 @@
+[PASS] historical examples regenerate bit-identically from raw catalogs: {'x_train': 'identical', 'y_train': 'identical', 'h_train': 'identical', 'x_cal': 'identical', 'y_cal': 'identical', 'h_cal': 'identical', 'x_test': 'identical', 'y_test': 'identical', 'h_test': 'identical', 'origin_test': 'identical'}
+[PASS] full-grid development comparison metrics reproduce: all models identical
+[PASS] headline candidate matches FINAL_RESULTS.md exact values: {'ig_bits': 0.14582367854116265, 'log_loss': 0.1687691602520702, 'brier': 0.04962805239809624}
+[PASS] ECE and spatial-prior diagnostics match manifest: {'overall_ece': [0.007146, 0.007146], 'early_ece': [0.007435, 0.007435], 'middle_ece': [0.007892, 0.007892], 'late_ece': [0.006189, 0.006189], 'spatial_prior_ig_bits': [0.141048, 0.141048]}
+[PASS] all ECE values under the Deck's 0.02 reference: {'overall_ece': 0.007146, 'early_ece': 0.007435, 'middle_ece': 0.007892, 'late_ece': 0.006189}
+[PASS] external-driver comparison (metrics + block intervals) reproduces: {'seismic_only': 0.145824, 'geomagnetic': 0.144984, 'solar': 0.14142, 'tidal_ephemeris': 0.142995, 'gps': 0.14291, 'all_external': 0.143128}
+[PASS] external seismic-only baseline equals headline candidate: 0.14582367854116265
+[PASS] no external driver shows a reliable gain (decision holds): {'geomagnetic': [-0.0022, 0.00061], 'solar': [-0.00527, -0.00354], 'tidal_ephemeris': [-0.00407, -0.00158], 'gps': [-0.00419, -0.00164], 'all_external': [-0.00423, -0.00112]}
+[PASS] matched ETAS comparison reproduces and matches manifest: {'etas_ig': 0.14532126298669718, 'delta_bits': np.float64(-0.0005024155544654811), 'ci95': [-0.0016491530912840287, 0.0006248024376007337]}
+[PASS] Day-7 QML ablation reproduces: {'qml_quantum_features': -0.001418, 'classical_two_input_control': -0.001176}
+[PASS] headline pipeline scripts never read the judge catalog: {'headline_hits': 'none', 'other_scripts_that_read_judge': {'audit_dataset.py': 'data audit (hashes/counts)', 'prepare_derived_catalogs.py': 'derived-catalog preparation', 'run_judge_comparison.py': 'documented earlier judge self-check on older models'}}
+[PASS] candidate beats climatology under either reference rate: {'train_rate': 0.05835, 'test_rate': 0.07541, 'ig_vs_train_rate': 0.145824, 'ig_vs_test_rate': 0.14231}
+[PASS] fixed forecast: 23,265 rows in exact contract order: {'rows': 23265, 'order_matches_contract': np.True_}
+[PASS] fixed forecast: probabilities finite, clipped to [1e-4, 1-1e-4], no duplicate keys: {'min': 0.0001, 'max': 0.9999, 'mean': 0.08171206146002274}
+[PASS] fixed forecast: every row equals matrix[cell, window rank]: {'max_abs_diff': 1.1102230246251565e-16, 'note': 'CSV float round-trip only'}
+[FAIL] RECORDED forecast rows are correctly aligned (known bug; expected FAIL): {'rows_wrong': 22163, 'recorded_equals_horizon_major_vector': True}
+[PASS] fixed forecast tracks each cell's 2024 activity better than recorded file: {'spearman_fixed': 0.7859, 'spearman_recorded': -0.0384}
+[PASS] fixed forecast: 200 random rows recomputed independently by (mask_id, window): {'max_abs_diff': np.float64(1.1102230246251565e-16)}
+[PASS] purged-split sensitivity (no label windows crossing split boundaries): {'purged_ig_bits': 0.141681, 'recorded_ig_bits': 0.145824, 'delta_bits': -0.004143, 'fit_rows_kept': 4862385, 'cal_rows_kept_per_horizon': [37224, 35673, 34122, 32571, 31020, 29469, 27918, 26367, 24816, 23265, 21714, 20163, 18612, 17061, 15510], 'ig_vs_test_period_climatology_bits': 0.138167}
+
+18/19 checks passed

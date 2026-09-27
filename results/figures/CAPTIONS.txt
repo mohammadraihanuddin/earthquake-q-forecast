@@ -1,0 +1,14 @@
+Figure captions (all on test origins 2021-2023 unless stated; judge used once)
+
+01_model_comparison.png     Information gain of every model on the same 767,745 test rows. Our model scores highest; the ETAS approximation is a statistical tie.
+02_external_drivers.png     Change in information gain when adding geomagnetic, solar, tidal or GPS features, with paired 95% intervals. None helps.
+03_per_horizon.png          Information gain, AUC and calibration error for each of the 15 forecast windows. Skill is steady.
+04_reliability.png          Reliability diagram (forecast vs observed rate) and the distribution of forecast probabilities.
+05_training_curve.png       Log loss over the 120 boosting iterations for fit rows and the early-stopping holdout.
+06_data_distribution.png    Catalog events per year, magnitude distribution, positive rate by year, and split sizes.
+07_feature_importance.png   Permutation importance on held-out test rows: location and last-year activity carry the signal.
+08_forecast_2025.png        Map of the 2025 forecast (mean over 15 windows) and grid-average probability per window.
+09_forecast_alignment_fix.png  Our original forecast file vs the corrected one for three cells, showing the row-alignment bug we fixed.
+10_test_vs_judge.png        Test vs judge information gain, AUC and ECE. Judge is higher than test: no sign of leakage.
+11_quantum_paired_test.png  Quantum features added to the model: paired 95% intervals for the change in IG and AUC, with the Study Deck reference.
+12_entry_thresholds.png     For each 30-day entry cut-off: share of cell-windows cleared and share of events that happened in cleared cells.

@@ -1,0 +1,23 @@
+# challenge data is not redistributed
+data/raw/*.csv
+# regenerated outputs
+pipeline/full_grid_development_comparison/
+pipeline/final_matched_external_driver_comparison/
+pipeline/matched_etas_frozen_comparison/
+pipeline/day7_qml_ablation/
+pipeline/final_presentation/
+pipeline/analysis/rerun/
+pipeline/analysis/final_run/
+pipeline/analysis/figures/
+pipeline/analysis/judge_check/
+pipeline/analysis/quantum_test/
+pipeline/analysis/stakeholder/
+pipeline/analysis/*.log
+pipeline/analysis/verification.json
+pipeline/analysis/results_page.html
+# python / os
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+~$*

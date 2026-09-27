@@ -1,0 +1,47 @@
+{
+  "design": [
+    "Following the Study Deck (Module 6, \"Approach 1\"): encode the time-varying",
+    "(\"dynamic\") seismic features by angle encoding, entangle, read Pauli Z and",
+    "ZZ expectation values, and append them to the classical features.  Compare",
+    "classical-only (the frozen candidate) with classical+quantum on identical",
+    "rows, splits and per-horizon isotonic calibration.  Uncertainty: paired",
+    "contiguous 3-origin block bootstrap (2,000 reps) of the IG and AUC",
+    "differences.  Test data only; the judge set is not used again.",
+    "",
+    "Circuit (4 qubits, exactly simulated; every gate is real so the state is a",
+    "real 16-vector):  RY(pi*x_i) on each qubit -> CNOT ring 0>1>2>3>0 ->",
+    "RY(pi*x_i) re-upload -> CNOT ring.  Read-out: <Z_i> (4) and <Z_i Z_i+1> (4)."
+  ],
+  "simulator_checked_rows_vs_qiskit": 6,
+  "classical_only": {
+    "ig_bits": 0.14582367854116265,
+    "auc": 0.9061222119528958
+  },
+  "classical_plus_quantum": {
+    "ig_bits": 0.14491574007331376,
+    "auc": 0.9059591040445805
+  },
+  "quantum_feature_split_share": 0.15638888888888888,
+  "paired_block_bootstrap_quantum_minus_classical": {
+    "delta_ig_bits": -0.000907938467848904,
+    "ig_ci95": [
+      -0.0014574047546520687,
+      -0.0003780209560309327
+    ],
+    "delta_auc": -0.00016310790831530753,
+    "auc_ci95": [
+      -0.00037238368348291306,
+      6.092733896720066e-05
+    ],
+    "ig_reps": 2000,
+    "auc_reps": 300,
+    "block_origins": 3,
+    "origins": 33
+  },
+  "rows": {
+    "fit": 5025240,
+    "cal": 558360,
+    "test": 767745
+  },
+  "runtime_s": 94.0
+}

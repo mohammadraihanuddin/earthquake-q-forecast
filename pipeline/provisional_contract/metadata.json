@@ -1,0 +1,10 @@
+{
+  "official": false,
+  "purpose": "engineering-only contract and performance test",
+  "selection_rule": "active rectangle cells ranked by observed event count, then row-major tie-break",
+  "cells": 1551,
+  "windows": 15,
+  "rows": 23265,
+  "judge_loaded": false,
+  "warning": "Do not use for official scoring or submission."
+}
